@@ -1,144 +1,79 @@
 "use client";
 
-import { Search, Mic, Clock, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { Search, Mic } from "lucide-react";
 
 export default function SearchPage() {
 
   const [query, setQuery] = useState("");
 
-  const quickSearches = [
-    "Movie Tickets",
-    "Food Delivery",
-    "Groceries",
-    "Bus Tickets",
-    "Electronics",
-    "Hotels",
-  ];
-
-  const history = [
-    "Avengers Endgame Tickets",
-    "Bangalore to Mysore Bus",
-    "Chicken Biryani",
-    "iPhone 15",
-  ];
-
   return (
-    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-28">
+    <main className="min-h-screen bg-[#f7f7fb] p-4">
 
-      {/* Header */}
-      <div className="mb-8">
+      <p className="text-sm mb-2">
+        Best Price AI
+      </p>
 
-        <div className="flex items-center gap-2 mb-3">
-          <Sparkles className="text-purple-600 w-5 h-5" />
+      <h1 className="text-5xl font-bold leading-tight mb-8">
+        What are you
+        <span className="text-blue-500"> looking for?</span>
+      </h1>
 
-          <p className="text-purple-600 font-medium">
-            Best Price AI
-          </p>
-        </div>
+      <div className="bg-white rounded-2xl p-4 flex items-center gap-3 shadow-sm mb-8 border focus-within:ring-4 focus-within:ring-purple-300">
 
-        <h1 className="text-4xl font-bold leading-tight text-gray-900">
-          What are you
-          <span className="text-purple-600">
-            {" "}looking for?
-          </span>
-        </h1>
-
-        <p className="text-gray-500 mt-3">
-          Search across multiple apps and get the best deal instantly.
-        </p>
-
-      </div>
-
-      {/* Search Bar */}
-      <div className="bg-white rounded-3xl px-4 py-4 flex items-center shadow-sm mb-8 border border-gray-100">
-
-        <Search className="text-gray-400 mr-3" />
+        <Search className="text-gray-400" />
 
         <input
-          type="text"
-          placeholder="Search for food, movies, groceries..."
-          className="flex-1 outline-none bg-transparent text-gray-700"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search for food, movies, electronics..."
+          className="flex-1 outline-none bg-transparent"
         />
 
         <Mic className="text-purple-600" />
 
       </div>
 
-      {/* Popular Searches */}
-      <div className="mb-10">
+      <div className="space-y-3">
 
-        <h2 className="font-semibold text-lg mb-4">
-          Popular Searches
-        </h2>
+        <p className="text-sm text-gray-500">
+          Try searching:
+        </p>
 
         <div className="flex flex-wrap gap-3">
 
-          {quickSearches.map((item) => (
+          <button
+            onClick={() => setQuery("iPhone 15")}
+            className="bg-white px-4 py-2 rounded-full shadow-sm"
+          >
+            iPhone 15
+          </button>
 
-            <button
-              key={item}
-              onClick={() => setQuery(item)}
-              className="bg-white px-4 py-3 rounded-2xl shadow-sm text-sm hover:bg-purple-50 transition"
-            >
-              {item}
-            </button>
+          <button
+            onClick={() => setQuery("Chicken Biryani")}
+            className="bg-white px-4 py-2 rounded-full shadow-sm"
+          >
+            Chicken Biryani
+          </button>
 
-          ))}
-
-        </div>
-
-      </div>
-
-      {/* Search History */}
-      <div>
-
-        <div className="flex items-center justify-between mb-5">
-
-          <h2 className="font-semibold text-lg">
-            Recent Searches
-          </h2>
-
-          <button className="text-sm text-purple-600">
-            Clear
+          <button
+            onClick={() => setQuery("Movie Tickets")}
+            className="bg-white px-4 py-2 rounded-full shadow-sm"
+          >
+            Movie Tickets
           </button>
 
         </div>
 
-        <div className="space-y-4">
-
-          {history.map((item) => (
-
-            <button
-              key={item}
-              onClick={() => setQuery(item)}
-              className="flex items-center gap-3 w-full bg-white rounded-2xl p-4 shadow-sm hover:bg-purple-50 transition"
-            >
-
-              <Clock className="text-gray-400 w-4 h-4" />
-
-              <p className="text-gray-700 text-left">
-                {item}
-              </p>
-
-            </button>
-
-          ))}
-
-        </div>
-
       </div>
 
-      {/* Bottom Button */}
-      <Link href="/results">
-
-        <button className="fixed bottom-6 left-4 right-4 bg-gradient-to-r from-purple-600 to-violet-500 text-white py-4 rounded-2xl font-semibold shadow-lg text-lg">
+      <Link
+        href={`/results?query=${encodeURIComponent(query)}`}
+      >
+        <button className="fixed bottom-6 left-4 right-4 bg-gradient-to-r from-purple-600 to-violet-500 text-white py-4 rounded-2xl font-semibold shadow-lg">
           Search Deals
         </button>
-
       </Link>
 
     </main>

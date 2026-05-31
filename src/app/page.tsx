@@ -32,28 +32,38 @@ export default function Home() {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-4 gap-3 mb-6">
-        
-        <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
-          <Wallet className="text-purple-600 mb-2" />
-          <p className="text-xs">Pay</p>
-        </div>
 
-        <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
-          <CreditCard className="text-purple-600 mb-2" />
-          <p className="text-xs">Cards</p>
-        </div>
+<div className="grid grid-cols-4 gap-3 mb-6">
 
-        <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
-          <ScanLine className="text-purple-600 mb-2" />
-          <p className="text-xs">Scan</p>
-        </div>
+  <Link href="/payment">
+    <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm cursor-pointer">
+      <p className="text-purple-600 text-2xl mb-2">💳</p>
+      <p className="text-xs">Pay</p>
+    </div>
+  </Link>
 
-        <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
-          <Search className="text-purple-600 mb-2" />
-          <p className="text-xs">Search</p>
-        </div>
-      </div>
+  <Link href="/results">
+    <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm cursor-pointer">
+      <p className="text-purple-600 text-2xl mb-2">💰</p>
+      <p className="text-xs">Cards</p>
+    </div>
+  </Link>
+
+  <Link href="/search">
+    <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm cursor-pointer">
+      <p className="text-purple-600 text-2xl mb-2">📷</p>
+      <p className="text-xs">Scan</p>
+    </div>
+  </Link>
+
+  <Link href="/search">
+    <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm cursor-pointer">
+      <p className="text-purple-600 text-2xl mb-2">🔍</p>
+      <p className="text-xs">Search</p>
+    </div>
+  </Link>
+
+</div>
 
       {/* Best Price AI Card */}
       <Link href="/search">
@@ -137,24 +147,35 @@ export default function Home() {
       </div>
 
       {/* Bottom Nav */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 flex justify-around">
-        <p className="text-purple-600 font-semibold">
-          Home
-        </p>
 
-        <p className="text-gray-500">
-          Transactions
-        </p>
+<div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 flex justify-around">
 
-        <p className="text-gray-500">
-          Offers
-        </p>
+  <Link href="/">
+    <p className="text-purple-600 font-semibold cursor-pointer">
+      Home
+    </p>
+  </Link>
 
-        <p className="text-gray-500">
-          Profile
-        </p>
-      </div>
+  <Link href="/results">
+    <p className="text-gray-500 cursor-pointer">
+      Transactions
+    </p>
+  </Link>
 
-    </main>
+  <Link href="/savings">
+    <p className="text-gray-500 cursor-pointer">
+      Offers
+    </p>
+  </Link>
+
+  <Link href="/profile">
+    <p className="text-gray-500 cursor-pointer">
+      Profile
+    </p>
+  </Link>
+
+</div>
+
+</main>
   );
 }
