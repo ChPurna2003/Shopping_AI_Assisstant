@@ -23,10 +23,6 @@ export default function SearchPage() {
     setAiResponse(result);
 
     setLoading(false);
-
-    setTimeout(() => {
-      window.location.href = `/results?query=${encodeURIComponent(query)}`;
-    }, 2000);
   };
 
   return (
@@ -83,39 +79,27 @@ export default function SearchPage() {
 
         <div className="flex flex-wrap gap-3">
 
-          <Link href="/results?query=Movie Tickets">
+          <Link href="/movies">
             <button className="bg-white border px-4 py-2 rounded-full shadow-sm">
               Movie Tickets
             </button>
           </Link>
 
-          <Link href="/results?query=Bus Tickets">
-            <button className="bg-white border px-4 py-2 rounded-full shadow-sm">
-              Bus Tickets
-            </button>
-          </Link>
-
-          <Link href="/results?query=Groceries">
-            <button className="bg-white border px-4 py-2 rounded-full shadow-sm">
-              Groceries
-            </button>
-          </Link>
-
-          <Link href="/results?query=Food Delivery">
+          <Link href="/food">
             <button className="bg-white border px-4 py-2 rounded-full shadow-sm">
               Food Delivery
             </button>
           </Link>
 
-          <Link href="/results?query=Electronics">
+          <Link href="/groceries">
             <button className="bg-white border px-4 py-2 rounded-full shadow-sm">
-              Electronics
+              Groceries
             </button>
           </Link>
 
-          <Link href="/results?query=Hotels">
+          <Link href="/electronics">
             <button className="bg-white border px-4 py-2 rounded-full shadow-sm">
-              Hotels
+              Electronics
             </button>
           </Link>
 
@@ -152,6 +136,7 @@ export default function SearchPage() {
       {/* Bottom Buttons */}
       <div className="fixed bottom-20 left-4 right-4 flex gap-3 z-50">
 
+        {/* Ask AI */}
         <button
           onClick={handleSearch}
           className="flex-1 h-14 bg-gradient-to-r from-purple-600 to-violet-500 text-white rounded-2xl font-semibold shadow-lg"
@@ -159,6 +144,7 @@ export default function SearchPage() {
           {loading ? "Thinking..." : "Ask AI"}
         </button>
 
+        {/* Search Deals */}
         <Link
           href={`/results?query=${encodeURIComponent(query || "Movie Tickets")}`}
           className="flex-1"
