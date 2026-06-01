@@ -1,194 +1,289 @@
+"use client";
+
 import Link from "next/link";
-import {
-  Bell,
-  Search,
-  Wallet,
-  CreditCard,
-  ScanLine,
-} from "lucide-react";
 
-export default function Home() {
+export default function HomePage() {
+
   return (
-    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-28">
-      
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold text-purple-700">
-          slice
-        </h1>
 
-        <Bell className="text-gray-700" />
+    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-40">
+
+      {/* Top Header */}
+      <div className="flex items-center justify-between mb-8">
+
+        <div>
+
+          <p className="text-sm text-gray-500">
+            Welcome back 👋
+          </p>
+
+          <h1 className="text-4xl font-bold mt-1">
+            Purna
+          </h1>
+
+        </div>
+
+        <Link href="/profile">
+
+          <img
+            src="/profile.jpg"
+            alt="profile"
+            className="w-14 h-14 rounded-full object-cover"
+          />
+
+        </Link>
+
       </div>
 
-      {/* Balance Card */}
-      <div className="bg-white rounded-3xl p-5 shadow-sm mb-5">
-        <p className="text-gray-500 text-sm mb-2">
-          Total Balance
+      {/* AI Banner */}
+      <div className="bg-gradient-to-r from-purple-600 to-violet-500 rounded-3xl p-6 text-white mb-6 shadow-lg">
+
+        <p className="text-sm text-purple-100 mb-2">
+          AI Powered Savings
         </p>
 
-        <h2 className="text-3xl font-bold">
-          ₹24,650.50
+        <h2 className="text-3xl font-bold leading-tight mb-3">
+          Find the best price across all apps instantly
         </h2>
+
+        <p className="text-purple-100 mb-6">
+          Compare prices, apply coupons, and save more automatically.
+        </p>
+
+        <Link href="/search">
+
+          <button className="bg-white text-purple-700 px-6 py-3 rounded-2xl font-semibold shadow-md">
+
+            Try Now ⚡
+
+          </button>
+
+        </Link>
+
       </div>
 
       {/* Quick Actions */}
+      <div className="grid grid-cols-4 gap-3 mb-8">
 
-<div className="grid grid-cols-4 gap-3 mb-6">
+        <Link href="/results?query=Movie Tickets">
 
-  <Link href="/payment">
-    <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm cursor-pointer">
-      <p className="text-purple-600 text-2xl mb-2">💳</p>
-      <p className="text-xs">Pay</p>
-    </div>
-  </Link>
+          <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
 
-  <Link href="/results">
-    <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm cursor-pointer">
-      <p className="text-purple-600 text-2xl mb-2">💰</p>
-      <p className="text-xs">Cards</p>
-    </div>
-  </Link>
+            <p className="text-3xl mb-2">
+              🎬
+            </p>
 
-  <Link href="/search">
-    <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm cursor-pointer">
-      <p className="text-purple-600 text-2xl mb-2">📷</p>
-      <p className="text-xs">Scan</p>
-    </div>
-  </Link>
+            <p className="text-xs font-medium">
+              Movies
+            </p>
 
-  <Link href="/search">
-    <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm cursor-pointer">
-      <p className="text-purple-600 text-2xl mb-2">🔍</p>
-      <p className="text-xs">Search</p>
-    </div>
-  </Link>
+          </div>
 
-</div>
+        </Link>
 
-      {/* Best Price AI Card */}
-      <Link href="/search">
+        <Link href="/results?query=Food Delivery">
 
-        <div className="bg-gradient-to-r from-purple-600 to-violet-500 rounded-3xl p-5 text-white shadow-lg mb-6 cursor-pointer">
-          
-          <p className="text-sm mb-2">
-            NEW FEATURE ✨
-          </p>
+          <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
 
-          <h2 className="text-2xl font-bold mb-2">
-            Best Price AI
+            <p className="text-3xl mb-2">
+              🍔
+            </p>
+
+            <p className="text-xs font-medium">
+              Food
+            </p>
+
+          </div>
+
+        </Link>
+
+        <Link href="/results?query=Groceries">
+
+          <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
+
+            <p className="text-3xl mb-2">
+              🛒
+            </p>
+
+            <p className="text-xs font-medium">
+              Grocery
+            </p>
+
+          </div>
+
+        </Link>
+
+        <Link href="/results?query=Electronics">
+
+          <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
+
+            <p className="text-3xl mb-2">
+              📱
+            </p>
+
+            <p className="text-xs font-medium">
+              Gadgets
+            </p>
+
+          </div>
+
+        </Link>
+
+      </div>
+
+      {/* Savings Card */}
+      <div className="bg-white rounded-3xl p-6 shadow-sm mb-6">
+
+        <p className="text-gray-500 text-sm mb-2">
+          Total Savings This Month
+        </p>
+
+        <h2 className="text-5xl font-bold mb-3">
+          ₹2,340
+        </h2>
+
+        <div className="bg-green-50 text-green-600 px-4 py-2 rounded-xl inline-block font-medium">
+
+          ↑ 18% higher than last month
+
+        </div>
+
+      </div>
+
+      {/* Recent Searches */}
+      <div className="mb-6">
+
+        <div className="flex justify-between items-center mb-4">
+
+          <h2 className="text-2xl font-bold">
+            Recent Searches
           </h2>
 
-          <p className="text-sm text-purple-100">
-            Compare prices across 100+ platforms instantly.
-          </p>
+          <Link href="/search">
 
-          <button className="mt-4 bg-white text-purple-700 px-4 py-2 rounded-xl font-semibold">
-            Try Now
-          </button>
+            <p className="text-purple-600 font-medium">
+              View all
+            </p>
+
+          </Link>
 
         </div>
 
-      </Link>
+        <div className="space-y-4">
 
-      {/* Transactions */}
-      <div>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold">
-            Recent Transactions
-          </h3>
+          <Link href="/results?query=Movie Tickets">
 
-          <p className="text-purple-600 text-sm">
-            View all
-          </p>
+            <div className="bg-white rounded-2xl p-5 shadow-sm flex justify-between items-center">
+
+              <div>
+
+                <p className="font-semibold">
+                  Avengers Endgame
+                </p>
+
+                <p className="text-sm text-gray-500 mt-1">
+                  Movie Tickets
+                </p>
+
+              </div>
+
+              <p className="text-green-600 font-bold">
+                Saved ₹230
+              </p>
+
+            </div>
+
+          </Link>
+
+          <Link href="/results?query=Food Delivery">
+
+            <div className="bg-white rounded-2xl p-5 shadow-sm flex justify-between items-center">
+
+              <div>
+
+                <p className="font-semibold">
+                  Chicken Biryani
+                </p>
+
+                <p className="text-sm text-gray-500 mt-1">
+                  Food Delivery
+                </p>
+
+              </div>
+
+              <p className="text-green-600 font-bold">
+                Saved ₹80
+              </p>
+
+            </div>
+
+          </Link>
+
         </div>
 
-        <div className="space-y-3">
-
-          <div className="bg-white rounded-2xl p-4 flex items-center justify-between shadow-sm">
-            <div>
-              <p className="font-medium">Swiggy</p>
-              <p className="text-xs text-gray-500">
-                Today
-              </p>
-            </div>
-
-            <p className="font-semibold">
-              -₹236
-            </p>
-          </div>
-
-          <div className="bg-white rounded-2xl p-4 flex items-center justify-between shadow-sm">
-            <div>
-              <p className="font-medium">Netflix</p>
-              <p className="text-xs text-gray-500">
-                Yesterday
-              </p>
-            </div>
-
-            <p className="font-semibold">
-              -₹649
-            </p>
-          </div>
-
-          <div className="bg-white rounded-2xl p-4 flex items-center justify-between shadow-sm">
-            <div>
-              <p className="font-medium">Amazon</p>
-              <p className="text-xs text-gray-500">
-                25 May
-              </p>
-            </div>
-
-            <p className="font-semibold">
-              -₹1299
-            </p>
-          </div>
-
-        </div>
       </div>
 
       {/* Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t h-16 flex items-center justify-around z-50">
 
-<div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg px-6 py-4 flex justify-around items-center z-50">
+        <Link href="/">
 
-  <Link href="/">
-    <div className="flex flex-col items-center">
-      <p className="text-purple-600 text-xl">🏠</p>
-      <p className="text-xs text-purple-600 font-semibold">
-        Home
-      </p>
-    </div>
-  </Link>
+          <div className="flex flex-col items-center text-purple-600">
 
-  <Link href="/results">
-    <div className="flex flex-col items-center">
-      <p className="text-gray-500 text-xl">💳</p>
-      <p className="text-xs text-gray-500">
-        Activity
-      </p>
-    </div>
-  </Link>
+            <p>🏠</p>
 
-  <Link href="/savings">
-    <div className="flex flex-col items-center">
-      <p className="text-gray-500 text-xl">🎁</p>
-      <p className="text-xs text-gray-500">
-        Offers
-      </p>
-    </div>
-  </Link>
+            <p className="text-xs">
+              Home
+            </p>
 
-  <Link href="/profile">
-    <div className="flex flex-col items-center">
-      <p className="text-gray-500 text-xl">👤</p>
-      <p className="text-xs text-gray-500">
-        Profile
-      </p>
-    </div>
-  </Link>
+          </div>
 
+        </Link>
 
-</div>
+        <Link href="/search">
 
-</main>
+          <div className="flex flex-col items-center text-gray-500">
+
+            <p>🔍</p>
+
+            <p className="text-xs">
+              Search
+            </p>
+
+          </div>
+
+        </Link>
+
+        <Link href="/savings">
+
+          <div className="flex flex-col items-center text-gray-500">
+
+            <p>💰</p>
+
+            <p className="text-xs">
+              Savings
+            </p>
+
+          </div>
+
+        </Link>
+
+        <Link href="/profile">
+
+          <div className="flex flex-col items-center text-gray-500">
+
+            <p>👤</p>
+
+            <p className="text-xs">
+              Profile
+            </p>
+
+          </div>
+
+        </Link>
+
+      </div>
+
+    </main>
   );
 }

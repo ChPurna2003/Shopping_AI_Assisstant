@@ -1,130 +1,65 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Ticket,
-  Percent,
-  ShieldCheck,
-  CircleCheck,
-} from "lucide-react";
 
 export default function DetailsPage() {
 
   return (
-    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-32">
 
-      {/* Header */}
-      <div className="mb-6">
+    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-40">
+
+      {/* Movie Card */}
+      <div className="bg-white rounded-3xl p-5 shadow-sm mb-5">
 
         <p className="text-sm text-gray-500 mb-2">
-          Best Price Found 🎉
+          IMAX 3D
         </p>
 
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-3xl font-bold mb-2">
           Avengers Endgame
         </h1>
 
-        <p className="text-gray-500 mt-2">
-          PVR Nexus Mall • IMAX 3D
+        <p className="text-gray-500">
+          Today • 7:30 PM
         </p>
-
-      </div>
-
-      {/* Price Card */}
-      <div className="bg-white rounded-3xl p-5 shadow-sm mb-5">
-
-        <div className="flex items-center justify-between mb-4">
-
-          <div>
-            <p className="text-gray-500 text-sm">
-              Platform
-            </p>
-
-            <h2 className="text-xl font-bold">
-              Paytm
-            </h2>
-          </div>
-
-          <div className="text-right">
-
-            <p className="text-3xl font-bold">
-              ₹420
-            </p>
-
-            <p className="line-through text-gray-400">
-              ₹650
-            </p>
-
-          </div>
-
-        </div>
-
-        <div className="bg-green-50 text-green-600 rounded-2xl p-3 font-medium">
-          You save ₹230 on this booking
-        </div>
 
       </div>
 
       {/* Price Breakdown */}
       <div className="bg-white rounded-3xl p-5 shadow-sm mb-5">
 
-        <h2 className="text-lg font-semibold mb-5">
+        <h2 className="text-xl font-bold mb-4">
           Price Breakdown
         </h2>
 
         <div className="space-y-4">
 
-          <div className="flex items-center justify-between">
-            <p className="text-gray-600">
-              Ticket Price
-            </p>
-
-            <p className="font-medium">
-              ₹500
-            </p>
+          <div className="flex justify-between">
+            <p>Ticket Price</p>
+            <p>₹650</p>
           </div>
 
-          <div className="flex items-center justify-between">
-            <p className="text-gray-600">
-              Convenience Fee
-            </p>
-
-            <p className="font-medium">
-              ₹35
-            </p>
+          <div className="flex justify-between">
+            <p>Convenience Fee</p>
+            <p>₹50</p>
           </div>
 
-          <div className="flex items-center justify-between">
-            <p className="text-gray-600">
-              Platform Fee
-            </p>
-
-            <p className="font-medium">
-              ₹15
-            </p>
+          <div className="flex justify-between">
+            <p>Platform Fee</p>
+            <p>₹20</p>
           </div>
 
-          <div className="flex items-center justify-between text-green-600">
-            <p>
-              Coupon Applied
-            </p>
-
-            <p className="font-semibold">
-              -₹150
-            </p>
+          <div className="flex justify-between text-green-600">
+            <p>Coupon Applied</p>
+            <p>- ₹300</p>
           </div>
 
-        </div>
+          <hr />
 
-        <div className="border-t mt-5 pt-5 flex items-center justify-between">
-
-          <p className="text-lg font-semibold">
-            Total Amount
-          </p>
-
-          <p className="text-2xl font-bold">
-            ₹420
-          </p>
+          <div className="flex justify-between text-2xl font-bold">
+            <p>Total Amount</p>
+            <p>₹420</p>
+          </div>
 
         </div>
 
@@ -133,33 +68,29 @@ export default function DetailsPage() {
       {/* Features */}
       <div className="grid grid-cols-2 gap-4 mb-6">
 
-        <div className="bg-white rounded-2xl p-4 shadow-sm">
-          <Ticket className="text-purple-600 mb-3" />
-
+        <div className="bg-white rounded-3xl p-5 shadow-sm">
+          <p className="text-purple-600 text-2xl mb-2">🎟️</p>
           <p className="font-medium">
             Instant Booking
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-4 shadow-sm">
-          <Percent className="text-purple-600 mb-3" />
-
+        <div className="bg-white rounded-3xl p-5 shadow-sm">
+          <p className="text-purple-600 text-2xl mb-2">🏷️</p>
           <p className="font-medium">
             Auto Coupons
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-4 shadow-sm">
-          <ShieldCheck className="text-purple-600 mb-3" />
-
+        <div className="bg-white rounded-3xl p-5 shadow-sm">
+          <p className="text-purple-600 text-2xl mb-2">🛡️</p>
           <p className="font-medium">
             Secure Payment
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-4 shadow-sm">
-          <CircleCheck className="text-purple-600 mb-3" />
-
+        <div className="bg-white rounded-3xl p-5 shadow-sm">
+          <p className="text-purple-600 text-2xl mb-2">✅</p>
           <p className="font-medium">
             Free Cancellation
           </p>
@@ -168,13 +99,19 @@ export default function DetailsPage() {
       </div>
 
       {/* Bottom Button */}
-      <Link href="/payment">
+      <div className="fixed bottom-20 left-4 right-4 z-50">
 
-        <button className="fixed bottom-20 left-4 right-4 bg-gradient-to-r from-purple-600 to-violet-500 text-white py-4 rounded-2xl font-semibold shadow-lg text-lg">
-          Proceed to Pay
-        </button>
+        <Link href="/payment">
 
-      </Link>
+          <button className="w-full h-14 bg-gradient-to-r from-purple-600 to-violet-500 text-white rounded-2xl font-semibold shadow-lg">
+
+            Proceed to Payment ₹420
+
+          </button>
+
+        </Link>
+
+      </div>
 
     </main>
   );

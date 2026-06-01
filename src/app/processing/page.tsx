@@ -1,20 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Loader2, CheckCircle } from "lucide-react";
 
 export default function ProcessingPage() {
-
-  const router = useRouter();
 
   const [step, setStep] = useState(0);
 
   const steps = [
-    "Verifying Payment",
-    "Applying Best Offers",
-    "Confirming Booking",
-    "Generating Ticket",
+    "Verifying payment",
+    "Applying best offers",
+    "Confirming booking",
+    "Generating ticket",
   ];
 
   useEffect(() => {
@@ -30,8 +26,8 @@ export default function ProcessingPage() {
         clearInterval(interval);
 
         setTimeout(() => {
-          router.push("/success");
-        }, 1000);
+          window.location.href = "/success";
+        }, 1200);
 
         return prev;
 
@@ -41,18 +37,18 @@ export default function ProcessingPage() {
 
     return () => clearInterval(interval);
 
-  }, [router, steps.length]);
+  }, []);
 
   return (
-    <main className="min-h-screen bg-white flex flex-col items-center justify-center px-6 pb-28">
+
+    <main className="min-h-screen bg-white flex flex-col items-center justify-center px-6">
 
       {/* Loader */}
-      <div className="w-28 h-28 rounded-full bg-gradient-to-r from-purple-600 to-violet-500 flex items-center justify-center mb-8 shadow-xl">
+      <div className="w-28 h-28 rounded-full bg-gradient-to-r from-purple-600 to-violet-500 flex items-center justify-center mb-8 shadow-xl animate-pulse">
 
-        <Loader2
-          className="text-white animate-spin"
-          size={42}
-        />
+        <p className="text-white text-5xl">
+          ⚡
+        </p>
 
       </div>
 
@@ -87,15 +83,17 @@ export default function ProcessingPage() {
 
             {index < step ? (
 
-              <CheckCircle className="text-green-500" />
+              <p className="text-green-500 text-xl">
+                ✓
+              </p>
 
             ) : index === step ? (
 
-              <Loader2 className="animate-spin text-purple-600" />
+              <div className="w-5 h-5 border-2 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
 
             ) : (
 
-              <div className="w-5 h-5 rounded-full border border-gray-300" />
+              <div className="w-5 h-5 rounded-full border border-gray-300"></div>
 
             )}
 
@@ -105,7 +103,7 @@ export default function ProcessingPage() {
 
       </div>
 
-      {/* Bottom Text */}
+      {/* AI Text */}
       <p className="text-sm text-gray-400 mt-10 text-center">
         AI is finding and applying the best available offers for you
       </p>
