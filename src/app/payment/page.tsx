@@ -2,7 +2,7 @@
 
 export default function PaymentPage() {
   return (
-    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-28">
+    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-32">
 
       {/* Header */}
       <div className="mb-6">
@@ -103,7 +103,7 @@ export default function PaymentPage() {
         onClick={() => {
           window.location.href = "/processing";
         }}
-        className="fixed bottom-6 left-4 right-4 bg-gradient-to-r from-purple-600 to-violet-500 text-white py-4 rounded-2xl font-semibold shadow-lg"
+        className="fixed bottom-20 left-4 right-4 bg-gradient-to-r from-purple-600 to-violet-500 text-white py-4 rounded-2xl font-semibold shadow-lg"
       >
         Pay ₹420 Securely
       </button>

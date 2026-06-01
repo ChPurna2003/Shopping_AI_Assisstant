@@ -1,7 +1,7 @@
 "use client";
 export default function SuccessPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-green-400 to-emerald-500 flex flex-col items-center justify-center p-6 text-white">
+    <main className="min-h-screen bg-gradient-to-b from-green-400 to-emerald-500 flex flex-col items-center justify-center p-6 text-white pb-28">
 
       <div className="bg-white text-green-500 w-24 h-24 rounded-full flex items-center justify-center text-5xl mb-8 shadow-xl">
         ✓

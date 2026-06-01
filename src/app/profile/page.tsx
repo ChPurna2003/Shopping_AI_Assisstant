@@ -4,8 +4,7 @@ import Link from "next/link";
 
 export default function ProfilePage() {
   return (
-    <main className="min-h-screen bg-[#f5f5f5] p-6">
-
+    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-32">
       {/* Top Close */}
       <div className="mb-10">
         <Link href="/">

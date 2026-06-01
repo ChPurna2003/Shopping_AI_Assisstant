@@ -1,6 +1,6 @@
 export default function SavingsPage() {
   return (
-    <main className="min-h-screen bg-[#f7f7fb] p-4">
+    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-28">
 
       <h1 className="text-3xl font-bold mb-6">
         Savings Dashboard

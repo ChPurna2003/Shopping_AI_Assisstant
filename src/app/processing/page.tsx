@@ -44,7 +44,7 @@ export default function ProcessingPage() {
   }, [router, steps.length]);
 
   return (
-    <main className="min-h-screen bg-white flex flex-col items-center justify-center px-6">
+    <main className="min-h-screen bg-white flex flex-col items-center justify-center px-6 pb-28">
 
       {/* Loader */}
       <div className="w-28 h-28 rounded-full bg-gradient-to-r from-purple-600 to-violet-500 flex items-center justify-center mb-8 shadow-xl">

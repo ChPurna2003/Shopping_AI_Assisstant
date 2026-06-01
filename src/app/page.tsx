@@ -9,7 +9,7 @@ import {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-24">
+    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-28">
       
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
@@ -146,33 +146,46 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Bottom Nav */}
+      {/* Bottom Navigation */}
 
-<div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 flex justify-around">
+<div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg px-6 py-4 flex justify-around items-center z-50">
 
   <Link href="/">
-    <p className="text-purple-600 font-semibold cursor-pointer">
-      Home
-    </p>
+    <div className="flex flex-col items-center">
+      <p className="text-purple-600 text-xl">🏠</p>
+      <p className="text-xs text-purple-600 font-semibold">
+        Home
+      </p>
+    </div>
   </Link>
 
   <Link href="/results">
-    <p className="text-gray-500 cursor-pointer">
-      Transactions
-    </p>
+    <div className="flex flex-col items-center">
+      <p className="text-gray-500 text-xl">💳</p>
+      <p className="text-xs text-gray-500">
+        Activity
+      </p>
+    </div>
   </Link>
 
   <Link href="/savings">
-    <p className="text-gray-500 cursor-pointer">
-      Offers
-    </p>
+    <div className="flex flex-col items-center">
+      <p className="text-gray-500 text-xl">🎁</p>
+      <p className="text-xs text-gray-500">
+        Offers
+      </p>
+    </div>
   </Link>
 
   <Link href="/profile">
-    <p className="text-gray-500 cursor-pointer">
-      Profile
-    </p>
+    <div className="flex flex-col items-center">
+      <p className="text-gray-500 text-xl">👤</p>
+      <p className="text-xs text-gray-500">
+        Profile
+      </p>
+    </div>
   </Link>
+
 
 </div>
 
