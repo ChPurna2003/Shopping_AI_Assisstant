@@ -1,9 +1,18 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 
-export default function FoodSuccessPage() {
+import {
+  Suspense,
+} from "react";
+
+import {
+  useSearchParams,
+} from "next/navigation";
+
+function FoodSuccessContent() {
 
   const searchParams = useSearchParams();
 
@@ -42,5 +51,18 @@ export default function FoodSuccessPage() {
       </div>
 
     </main>
+  );
+}
+
+export default function FoodSuccessPage() {
+
+  return (
+
+    <Suspense fallback={<div>Loading...</div>}>
+
+      <FoodSuccessContent />
+
+    </Suspense>
+
   );
 }
