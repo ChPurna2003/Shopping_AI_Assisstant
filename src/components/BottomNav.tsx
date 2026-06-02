@@ -24,11 +24,11 @@ export default function BottomNav() {
       </Link>
 
       <Link
-        href="/results"
+        href="/history"
         className={`flex flex-col items-center text-xs ${active("/results")}`}
       >
         <BadgeIndianRupee size={22} />
-        <span>Results</span>
+        <span>History</span>
       </Link>
 
       <Link

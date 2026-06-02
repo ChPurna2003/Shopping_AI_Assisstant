@@ -6,17 +6,20 @@ export default function FoodPage() {
     {
       name: "Mehfil Biryani",
       item: "Chicken Biryani",
-      time: "30 mins"
+      time: "30 mins",
+      price: 210,
     },
     {
       name: "Burger King",
       item: "Whopper Meal",
-      time: "25 mins"
+      time: "25 mins",
+      price: 220,
     },
     {
       name: "Pizza Hut",
       item: "Farmhouse Pizza",
-      time: "40 mins"
+      time: "40 mins",
+      price: 340,
     }
   ];
 
@@ -51,12 +54,16 @@ export default function FoodPage() {
                   {food.time}
                 </p>
 
+                <p className="text-lg font-bold mt-1">
+                  ₹{food.price}
+                </p>
+
               </div>
 
               <button
                 onClick={() =>
                   window.location.href =
-                    `/results?query=${encodeURIComponent(food.item)}`
+                    `/results?query=${encodeURIComponent(food.item)}&type=food&price=${food.price}`
                 }
                 className="bg-orange-500 text-white px-5 py-2 rounded-xl"
               >
