@@ -1,43 +1,59 @@
 "use client";
 
-import Link from "next/link";
-
 export default function ElectronicsPage() {
+
+  const gadgets = [
+    "iPhone 15",
+    "Samsung S24",
+    "MacBook Air",
+    "Sony Headphones"
+  ];
+
   return (
-    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-40">
+    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-32">
 
       <h1 className="text-3xl font-bold mb-6">
-        Electronics
+        📱 Gadgets
       </h1>
 
       <div className="space-y-4">
 
-        <input
-          placeholder="Product Name"
-          className="w-full p-4 rounded-2xl border"
-        />
+        {gadgets.map((item) => (
+          <div
+            key={item}
+            className="bg-white rounded-3xl p-5 shadow-sm"
+          >
 
-        <select className="w-full p-4 rounded-2xl border">
-          <option>Select RAM</option>
-          <option>8 GB</option>
-          <option>12 GB</option>
-          <option>16 GB</option>
-        </select>
+            <div className="flex justify-between items-center">
 
-        <select className="w-full p-4 rounded-2xl border">
-          <option>Select Storage</option>
-          <option>128 GB</option>
-          <option>256 GB</option>
-          <option>512 GB</option>
-        </select>
+              <div>
+
+                <h2 className="font-bold text-xl">
+                  {item}
+                </h2>
+
+                <p className="text-gray-500 text-sm">
+                  Cashback available
+                </p>
+
+              </div>
+
+              <button
+                onClick={() =>
+                  window.location.href =
+                    `/results?query=${encodeURIComponent(item)}`
+                }
+                className="bg-blue-500 text-white px-5 py-2 rounded-xl"
+              >
+                Compare
+              </button>
+
+            </div>
+
+          </div>
+        ))}
 
       </div>
-
-      <Link href="/results">
-        <button className="fixed bottom-24 left-4 right-4 h-14 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold">
-          Compare Electronics Prices
-        </button>
-      </Link>
 
     </main>
   );

@@ -1,34 +1,48 @@
 "use client";
 
-import Link from "next/link";
-
 export default function GroceriesPage() {
+
+  const groceries = [
+    "Milk",
+    "Rice Bag",
+    "Eggs",
+    "Vegetables",
+    "Cold Drinks"
+  ];
+
   return (
-    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-40">
+    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-32">
 
       <h1 className="text-3xl font-bold mb-6">
-        Groceries
+        🛒 Groceries
       </h1>
 
-      <div className="space-y-4">
+      <div className="grid grid-cols-2 gap-4">
 
-        <input
-          placeholder="Items Needed"
-          className="w-full p-4 rounded-2xl border"
-        />
+        {groceries.map((item) => (
+          <div
+            key={item}
+            className="bg-white rounded-3xl p-6 shadow-sm text-center"
+          >
 
-        <input
-          placeholder="Delivery Location"
-          className="w-full p-4 rounded-2xl border"
-        />
+            <h2 className="font-bold text-lg mb-4">
+              {item}
+            </h2>
+
+            <button
+              onClick={() =>
+                window.location.href =
+                  `/results?query=${encodeURIComponent(item)}`
+              }
+              className="bg-green-500 text-white px-4 py-2 rounded-xl"
+            >
+              Compare
+            </button>
+
+          </div>
+        ))}
 
       </div>
-
-      <Link href="/results">
-        <button className="fixed bottom-24 left-4 right-4 h-14 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold">
-          Compare Grocery Prices
-        </button>
-      </Link>
 
     </main>
   );

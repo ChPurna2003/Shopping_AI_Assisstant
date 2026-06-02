@@ -1,106 +1,185 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function ResultsPage() {
-
+function ResultsContent() {
   const searchParams = useSearchParams();
-  const query = searchParams.get("query") || "Movie Tickets";
 
-  const deals: any = {
+  const query =
+    searchParams?.get("query") || "Movie";
 
-    "Movie Tickets": [
-      { name: "Paytm", price: "₹420", save: "₹230" },
-      { name: "BookMyShow", price: "₹450", save: "₹200" },
-      { name: "PVR", price: "₹460", save: "₹190" },
-    ],
+  const lowerQuery = query.toLowerCase();
 
-    "Food Delivery": [
-      { name: "Swiggy", price: "₹220", save: "₹80" },
-      { name: "Zomato", price: "₹245", save: "₹50" },
-      { name: "EatSure", price: "₹210", save: "₹90" },
-    ],
+  let currentDeals = [];
 
-    Electronics: [
-      { name: "Amazon", price: "₹59,999", save: "₹4,000" },
-      { name: "Flipkart", price: "₹60,499", save: "₹3,500" },
-      { name: "Croma", price: "₹61,000", save: "₹2,800" },
-    ],
+  // MOVIES
+  if (
+    lowerQuery.includes("movie") ||
+    lowerQuery.includes("pushpa") ||
+    lowerQuery.includes("avengers endgame") ||
+    lowerQuery.includes("kalki") ||
+    lowerQuery.includes("interstellar")
+  ) {
+    currentDeals = [
+      {
+        name: "BookMyShow",
+        price: "₹320",
+        save: "₹120",
+        type: "movie",
+      },
+      {
+        name: "Paytm Movies",
+        price: "₹340",
+        save: "₹100",
+        type: "movie",
+      },
+      {
+        name: "PVR",
+        price: "₹360",
+        save: "₹80",
+        type: "movie",
+      },
+    ];
+  }
 
-    Groceries: [
-      { name: "Blinkit", price: "₹780", save: "₹120" },
-      { name: "Zepto", price: "₹820", save: "₹80" },
-      { name: "BigBasket", price: "₹760", save: "₹150" },
-    ],
+  // FOOD
+  else if (
+    lowerQuery.includes("biryani") ||
+    lowerQuery.includes("pizza") ||
+    lowerQuery.includes("burger") ||
+    lowerQuery.includes("whopper meal")
+  ) {
+    currentDeals = [
+      {
+        name: "Zomato",
+        price: "₹220",
+        save: "₹80",
+        type: "food",
+      },
+      {
+        name: "Swiggy",
+        price: "₹240",
+        save: "₹60",
+        type: "food",
+      },
+      {
+        name: "EatSure",
+        price: "₹210",
+        save: "₹90",
+        type: "food",
+      },
+    ];
+  }
 
-    Hotels: [
-      { name: "Booking.com", price: "₹4,200", save: "₹900" },
-      { name: "Goibibo", price: "₹4,500", save: "₹700" },
-      { name: "MakeMyTrip", price: "₹4,350", save: "₹850" },
-    ],
+  // GROCERY
+  else if (
+    lowerQuery.includes("vegetable") ||
+    lowerQuery.includes("eggs") ||
+    lowerQuery.includes("milk") ||
+    lowerQuery.includes("rice bag") ||
+    lowerQuery.includes("cold drink")
+  ) {
+    currentDeals = [
+      {
+        name: "Blinkit",
+        price: "₹220",
+        save: "₹40",
+        type: "grocery",
+      },
+      {
+        name: "Zepto",
+        price: "₹240",
+        save: "₹25",
+        type: "grocery",
+      },
+      {
+        name: "Instamart",
+        price: "₹210",
+        save: "₹50",
+        type: "grocery",
+      },
+    ];
+  }
 
-    "Bus Tickets": [
-      { name: "RedBus", price: "₹950", save: "₹150" },
-      { name: "AbhiBus", price: "₹920", save: "₹180" },
-      { name: "Paytm Travel", price: "₹980", save: "₹120" },
-    ],
-  };
-
-  const currentDeals =
-    deals[query] || deals["Movie Tickets"];
+  // ELECTRONICS
+  else {
+    currentDeals = [
+      {
+        name: "Amazon",
+        price: "₹59,999",
+        save: "₹4,000",
+        type: "electronics",
+      },
+      {
+        name: "Flipkart",
+        price: "₹60,499",
+        save: "₹3,500",
+        type: "electronics",
+      },
+      {
+        name: "Croma",
+        price: "₹61,000",
+        save: "₹2,800",
+        type: "electronics",
+      },
+    ];
+  }
 
   return (
-
     <main className="min-h-screen bg-[#f7f7fb] p-4 pb-40">
 
-      {/* Header */}
       <p className="text-sm text-gray-500 mb-2">
         Today | Best Prices
       </p>
 
-      <h1 className="text-4xl font-bold mb-6">
+      <h1 className="text-5xl font-bold mb-8">
         {query}
       </h1>
 
-      {/* Filter Chips */}
-      <div className="flex gap-3 overflow-x-auto mb-6">
+      {/* FILTERS */}
+      <div className="flex gap-3 mb-8 overflow-x-auto">
 
-        <button className="bg-blue-600 text-white px-4 py-2 rounded-full">
+        <button className="bg-blue-600 text-white px-5 py-3 rounded-full">
           All
         </button>
 
-        <button className="bg-white px-4 py-2 rounded-full border">
+        <button className="bg-white border px-5 py-3 rounded-full">
           Top Deals
         </button>
 
-        <button className="bg-white px-4 py-2 rounded-full border">
-          Fast Delivery
-        </button>
+        {currentDeals[0]?.type !== "movie" && (
+          <button className="bg-white border px-5 py-3 rounded-full">
+            Fast Delivery
+          </button>
+        )}
 
       </div>
 
-      {/* Deal Cards */}
-      <div className="space-y-4">
+      {/* DEALS */}
+      <div className="space-y-5">
 
-        {currentDeals.map((deal: any, index: number) => (
+        {currentDeals.map((deal, index) => (
 
           <Link
             key={index}
-            href="/details"
+            href={`/details?query=${query}&type=${deal.type}&price=${deal.price}`}
           >
 
-            <div className="bg-white rounded-3xl p-5 shadow-sm">
+            <div className="bg-white rounded-3xl p-6 shadow-sm">
 
               <div className="flex justify-between items-center">
 
                 <div>
 
-                  <h2 className="text-xl font-bold">
+                  <h2 className="text-3xl font-bold">
                     {deal.name}
                   </h2>
 
-                  <p className="text-green-600 text-sm mt-1">
+                  <p className="text-green-600 text-lg mt-2">
                     Save {deal.save}
                   </p>
 
@@ -108,11 +187,11 @@ export default function ResultsPage() {
 
                 <div className="text-right">
 
-                  <p className="text-2xl font-bold">
+                  <p className="text-4xl font-bold">
                     {deal.price}
                   </p>
 
-                  <p className="text-sm text-gray-400">
+                  <p className="text-gray-400">
                     Best Deal
                   </p>
 
@@ -128,12 +207,14 @@ export default function ResultsPage() {
 
       </div>
 
-      {/* Bottom CTA */}
+      {/* CTA */}
       <div className="fixed bottom-20 left-4 right-4 z-50">
 
-        <Link href="/details">
+        <Link
+          href={`/details?query=${query}&type=${currentDeals[0]?.type}&price=${currentDeals[0]?.price}`}
+        >
 
-          <button className="w-full h-14 bg-gradient-to-r from-cyan-500 to-teal-500 text-white rounded-2xl font-semibold shadow-lg">
+          <button className="w-full h-16 bg-gradient-to-r from-cyan-500 to-teal-500 text-white rounded-2xl text-xl font-bold shadow-lg">
 
             Best Deal Found 🎉
 
@@ -144,5 +225,13 @@ export default function ResultsPage() {
       </div>
 
     </main>
+  );
+}
+
+export default function ResultsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResultsContent />
+    </Suspense>
   );
 }

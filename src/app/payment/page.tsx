@@ -1,83 +1,43 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export default function PaymentPage() {
 
-  return (
+  const searchParams = useSearchParams();
 
+  const query =
+    searchParams.get("query") || "Item";
+
+  const type =
+    searchParams.get("type") || "movie";
+
+  return (
     <main className="min-h-screen bg-[#f7f7fb] p-4 pb-40">
 
-      {/* slice UPI */}
-      <div className="bg-white rounded-3xl p-5 shadow-sm border-2 border-blue-500 mb-6">
+      <h1 className="text-3xl font-bold mb-8">
+        Payment
+      </h1>
 
-        <div className="flex justify-between items-center">
+      <div className="bg-white rounded-3xl p-6 shadow-sm">
 
-          <div>
+        <h2 className="text-2xl font-bold mb-2">
+          {query}
+        </h2>
 
-            <h2 className="text-2xl font-bold">
-              slice UPI
-            </h2>
-
-            <p className="text-gray-500 mt-1">
-              Pay with slice balance or linked bank
-            </p>
-
-          </div>
-
-          <div className="w-6 h-6 rounded-full border-4 border-blue-500"></div>
-
-        </div>
-
-      </div>
-
-      {/* Other Methods */}
-      <h2 className="text-2xl font-bold mb-4">
-        Other Payment Methods
-      </h2>
-
-      <div className="space-y-4">
-
-        <div className="bg-white rounded-2xl p-5 shadow-sm flex justify-between">
-          <p className="font-medium">UPI Apps</p>
-          <p>→</p>
-        </div>
-
-        <div className="bg-white rounded-2xl p-5 shadow-sm flex justify-between">
-          <p className="font-medium">Credit / Debit Cards</p>
-          <p>→</p>
-        </div>
-
-        <div className="bg-white rounded-2xl p-5 shadow-sm flex justify-between">
-          <p className="font-medium">Net Banking</p>
-          <p>→</p>
-        </div>
-
-        <div className="bg-white rounded-2xl p-5 shadow-sm flex justify-between">
-          <p className="font-medium">Wallets</p>
-          <p>→</p>
-        </div>
-
-      </div>
-
-      {/* Security Box */}
-      <div className="bg-green-50 border border-green-200 rounded-2xl p-4 mt-6">
-
-        <p className="text-green-700 font-medium">
-          🔒 100% Secure Payments powered by slice
+        <p className="text-gray-600">
+          Pay securely with Slice UPI
         </p>
 
       </div>
 
-      {/* Bottom Pay Button */}
       <div className="fixed bottom-20 left-4 right-4 z-50">
 
-        <Link href="/processing">
+        <Link href={`/processing?query=${query}&type=${type}`}>
 
-          <button className="w-full h-14 bg-gradient-to-r from-purple-600 to-violet-500 text-white rounded-2xl font-semibold shadow-lg">
-
-            Pay ₹420 Securely
-
+          <button className="w-full h-14 bg-black text-white rounded-2xl font-semibold">
+            Pay Now ₹499
           </button>
 
         </Link>

@@ -1,111 +1,245 @@
 "use client";
 
-import Link from "next/link";
+export const dynamic = "force-dynamic";
 
-export default function DetailsPage() {
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+
+function DetailsContent() {
+  const searchParams = useSearchParams();
+
+  const query =
+    searchParams.get("query") || "Item";
+
+  const type =
+    searchParams.get("type") || "food";
+
+  const price =
+    searchParams.get("price") || "₹499";
 
   return (
-
     <main className="min-h-screen bg-[#f7f7fb] p-4 pb-40">
 
-      {/* Movie Card */}
-      <div className="bg-white rounded-3xl p-5 shadow-sm mb-5">
+      {/* TOP CARD */}
+      <div className="bg-white rounded-3xl p-6 shadow-sm mb-6">
 
-        <p className="text-sm text-gray-500 mb-2">
-          IMAX 3D
-        </p>
+        {type === "movie" && (
+          <>
+            <p className="text-sm text-purple-500">
+              IMAX 3D
+            </p>
 
-        <h1 className="text-3xl font-bold mb-2">
-          Avengers Endgame
-        </h1>
+            <h1 className="text-5xl font-bold mt-2">
+              {query}
+            </h1>
 
-        <p className="text-gray-500">
-          Today • 7:30 PM
-        </p>
+            <p className="text-gray-500 mt-2">
+              Today • 7:30 PM
+            </p>
+          </>
+        )}
 
-      </div>
+        {type === "food" && (
+          <>
+            <p className="text-sm text-purple-500">
+              Fast Delivery
+            </p>
 
-      {/* Price Breakdown */}
-      <div className="bg-white rounded-3xl p-5 shadow-sm mb-5">
+            <h1 className="text-5xl font-bold mt-2">
+              {query}
+            </h1>
 
-        <h2 className="text-xl font-bold mb-4">
-          Price Breakdown
-        </h2>
+            <p className="text-gray-500 mt-2">
+              Delivery in 25 mins
+            </p>
+          </>
+        )}
 
-        <div className="space-y-4">
+        {type === "grocery" && (
+          <>
+            <p className="text-sm text-green-500">
+              Instant Delivery
+            </p>
 
-          <div className="flex justify-between">
-            <p>Ticket Price</p>
-            <p>₹650</p>
-          </div>
+            <h1 className="text-5xl font-bold mt-2">
+              {query}
+            </h1>
 
-          <div className="flex justify-between">
-            <p>Convenience Fee</p>
-            <p>₹50</p>
-          </div>
+            <p className="text-gray-500 mt-2">
+              Delivery in 10 mins
+            </p>
+          </>
+        )}
 
-          <div className="flex justify-between">
-            <p>Platform Fee</p>
-            <p>₹20</p>
-          </div>
+        {type === "electronics" && (
+          <>
+            <p className="text-sm text-blue-500">
+              Premium Deal
+            </p>
 
-          <div className="flex justify-between text-green-600">
-            <p>Coupon Applied</p>
-            <p>- ₹300</p>
-          </div>
+            <h1 className="text-5xl font-bold mt-2">
+              {query}
+            </h1>
 
-          <hr />
-
-          <div className="flex justify-between text-2xl font-bold">
-            <p>Total Amount</p>
-            <p>₹420</p>
-          </div>
-
-        </div>
-
-      </div>
-
-      {/* Features */}
-      <div className="grid grid-cols-2 gap-4 mb-6">
-
-        <div className="bg-white rounded-3xl p-5 shadow-sm">
-          <p className="text-purple-600 text-2xl mb-2">🎟️</p>
-          <p className="font-medium">
-            Instant Booking
-          </p>
-        </div>
-
-        <div className="bg-white rounded-3xl p-5 shadow-sm">
-          <p className="text-purple-600 text-2xl mb-2">🏷️</p>
-          <p className="font-medium">
-            Auto Coupons
-          </p>
-        </div>
-
-        <div className="bg-white rounded-3xl p-5 shadow-sm">
-          <p className="text-purple-600 text-2xl mb-2">🛡️</p>
-          <p className="font-medium">
-            Secure Payment
-          </p>
-        </div>
-
-        <div className="bg-white rounded-3xl p-5 shadow-sm">
-          <p className="text-purple-600 text-2xl mb-2">✅</p>
-          <p className="font-medium">
-            Free Cancellation
-          </p>
-        </div>
+            <p className="text-gray-500 mt-2">
+              1 Year Warranty Included
+            </p>
+          </>
+        )}
 
       </div>
 
-      {/* Bottom Button */}
+      {/* DETAILS CARD */}
+      <div className="bg-white rounded-3xl p-6 shadow-sm">
+
+        {/* MOVIE */}
+        {type === "movie" && (
+          <>
+            <h2 className="text-3xl font-bold mb-8">
+              Ticket Breakdown
+            </h2>
+
+            <div className="space-y-5 text-xl">
+
+              <div className="flex justify-between">
+                <p>Ticket Price</p>
+                <p>{price}</p>
+              </div>
+
+              <div className="flex justify-between">
+                <p>Coupon Discount</p>
+                <p className="text-green-600">
+                  -₹100
+                </p>
+              </div>
+
+              <div className="flex justify-between">
+                <p>Convenience Fee</p>
+                <p>₹20</p>
+              </div>
+
+            </div>
+          </>
+        )}
+
+        {/* FOOD */}
+        {type === "food" && (
+          <>
+            <h2 className="text-3xl font-bold mb-8">
+              Food Order Details
+            </h2>
+
+            <div className="space-y-5 text-xl">
+
+              <div className="flex justify-between">
+                <p>Meal Price</p>
+                <p>{price}</p>
+              </div>
+
+              <div className="flex justify-between">
+                <p>Delivery Fee</p>
+                <p className="text-green-600">
+                  FREE
+                </p>
+              </div>
+
+              <div className="flex justify-between">
+                <p>Platform Fee</p>
+                <p>₹10</p>
+              </div>
+
+            </div>
+          </>
+        )}
+
+        {/* GROCERY */}
+        {type === "grocery" && (
+          <>
+            <h2 className="text-3xl font-bold mb-8">
+              Grocery Details
+            </h2>
+
+            <div className="space-y-5 text-xl">
+
+              <div className="flex justify-between">
+                <p>Item Total</p>
+                <p>{price}</p>
+              </div>
+
+              <div className="flex justify-between">
+                <p>Delivery Fee</p>
+                <p className="text-green-600">
+                  FREE
+                </p>
+              </div>
+
+              <div className="flex justify-between">
+                <p>Coupon Savings</p>
+                <p className="text-green-600">
+                  -₹50
+                </p>
+              </div>
+
+            </div>
+          </>
+        )}
+
+        {/* ELECTRONICS */}
+        {type === "electronics" && (
+          <>
+            <h2 className="text-3xl font-bold mb-8">
+              Price Breakdown
+            </h2>
+
+            <div className="space-y-5 text-xl">
+
+              <div className="flex justify-between">
+                <p>Original Price</p>
+                <p>{price}</p>
+              </div>
+
+              <div className="flex justify-between">
+                <p>Exchange Bonus</p>
+                <p className="text-green-600">
+                  -₹4,000
+                </p>
+              </div>
+
+              <div className="flex justify-between">
+                <p>Bank Offer</p>
+                <p className="text-green-600">
+                  -₹2,000
+                </p>
+              </div>
+
+            </div>
+          </>
+        )}
+
+        {/* TOTAL */}
+        <div className="border-t mt-8 pt-6 flex justify-between items-center">
+
+          <h2 className="text-3xl font-bold">
+            Total
+          </h2>
+
+          <h2 className="text-4xl font-bold text-purple-600">
+            {price}
+          </h2>
+
+        </div>
+
+      </div>
+
+      {/* PAYMENT BUTTON */}
       <div className="fixed bottom-20 left-4 right-4 z-50">
 
-        <Link href="/payment">
+        <Link href={`/success/${type}`}>
 
-          <button className="w-full h-14 bg-gradient-to-r from-purple-600 to-violet-500 text-white rounded-2xl font-semibold shadow-lg">
+          <button className="w-full h-16 bg-gradient-to-r from-purple-500 to-violet-500 text-white rounded-2xl text-xl font-bold shadow-lg">
 
-            Proceed to Payment ₹420
+            Continue Payment {price}
 
           </button>
 
@@ -114,5 +248,13 @@ export default function DetailsPage() {
       </div>
 
     </main>
+  );
+}
+
+export default function DetailsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DetailsContent />
+    </Suspense>
   );
 }

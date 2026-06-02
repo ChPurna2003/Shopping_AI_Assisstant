@@ -1,40 +1,74 @@
 "use client";
 
-import Link from "next/link";
-
 export default function FoodPage() {
+
+  const restaurants = [
+    {
+      name: "Mehfil Biryani",
+      item: "Chicken Biryani",
+      time: "30 mins"
+    },
+    {
+      name: "Burger King",
+      item: "Whopper Meal",
+      time: "25 mins"
+    },
+    {
+      name: "Pizza Hut",
+      item: "Farmhouse Pizza",
+      time: "40 mins"
+    }
+  ];
+
   return (
-    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-40">
+    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-32">
 
       <h1 className="text-3xl font-bold mb-6">
-        Food Delivery
+        🍔 Food Delivery
       </h1>
 
       <div className="space-y-4">
 
-        <input
-          placeholder="Food Item"
-          className="w-full p-4 rounded-2xl border"
-        />
+        {restaurants.map((food) => (
+          <div
+            key={food.name}
+            className="bg-white rounded-3xl p-5 shadow-sm"
+          >
 
-        <input
-          placeholder="Location"
-          className="w-full p-4 rounded-2xl border"
-        />
+            <div className="flex justify-between items-center">
 
-        <select className="w-full p-4 rounded-2xl border">
-          <option>Veg / Non-Veg</option>
-          <option>Veg</option>
-          <option>Non-Veg</option>
-        </select>
+              <div>
+
+                <h2 className="text-xl font-bold">
+                  {food.name}
+                </h2>
+
+                <p className="text-gray-500">
+                  {food.item}
+                </p>
+
+                <p className="text-sm text-green-600">
+                  {food.time}
+                </p>
+
+              </div>
+
+              <button
+                onClick={() =>
+                  window.location.href =
+                    `/results?query=${encodeURIComponent(food.item)}`
+                }
+                className="bg-orange-500 text-white px-5 py-2 rounded-xl"
+              >
+                Order
+              </button>
+
+            </div>
+
+          </div>
+        ))}
 
       </div>
-
-      <Link href="/results">
-        <button className="fixed bottom-24 left-4 right-4 h-14 rounded-2xl bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold">
-          Compare Food Prices
-        </button>
-      </Link>
 
     </main>
   );

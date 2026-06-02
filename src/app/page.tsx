@@ -65,7 +65,7 @@ export default function HomePage() {
       {/* Quick Actions */}
       <div className="grid grid-cols-4 gap-3 mb-8">
 
-        <Link href="/results?query=Movie Tickets">
+        <Link href="/movies?query=Movie Tickets">
 
           <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
 
@@ -81,7 +81,7 @@ export default function HomePage() {
 
         </Link>
 
-        <Link href="/results?query=Food Delivery">
+        <Link href="/food?query=Food Delivery">
 
           <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
 
@@ -97,7 +97,7 @@ export default function HomePage() {
 
         </Link>
 
-        <Link href="/results?query=Groceries">
+        <Link href="/groceries?query=Groceries">
 
           <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
 
@@ -113,7 +113,7 @@ export default function HomePage() {
 
         </Link>
 
-        <Link href="/results?query=Electronics">
+        <Link href="/electronics?query=Electronics">
 
           <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
 

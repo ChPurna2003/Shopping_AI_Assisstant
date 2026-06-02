@@ -1,47 +1,57 @@
 "use client";
 
-import Link from "next/link";
-
 export default function MoviesPage() {
+
+  const movies = [
+    "Avengers Endgame",
+    "Pushpa 2",
+    "Kalki 2898 AD",
+    "Interstellar"
+  ];
+
   return (
-    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-40">
+    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-32">
 
       <h1 className="text-3xl font-bold mb-6">
-        Movie Tickets
+        🎬 Movies
       </h1>
 
       <div className="space-y-4">
 
-        <input
-          placeholder="Movie Name"
-          className="w-full p-4 rounded-2xl border"
-        />
+        {movies.map((movie) => (
+          <div
+            key={movie}
+            className="bg-white rounded-3xl p-5 shadow-sm"
+          >
 
-        <input
-          placeholder="City"
-          className="w-full p-4 rounded-2xl border"
-        />
+            <div className="flex justify-between items-center">
 
-        <input
-          type="date"
-          className="w-full p-4 rounded-2xl border"
-        />
+              <div>
+                <h2 className="text-xl font-bold">
+                  {movie}
+                </h2>
 
-        <select className="w-full p-4 rounded-2xl border">
-          <option>Select Showtime</option>
-          <option>10:00 AM</option>
-          <option>1:00 PM</option>
-          <option>4:00 PM</option>
-          <option>9:00 PM</option>
-        </select>
+                <p className="text-gray-500 text-sm">
+                  IMAX • 4K • Telugu
+                </p>
+              </div>
+
+              <button
+                onClick={() =>
+                  window.location.href =
+                    `/results?query=${encodeURIComponent(movie)}`
+                }
+                className="bg-purple-600 text-white px-5 py-2 rounded-xl"
+              >
+                Book
+              </button>
+
+            </div>
+
+          </div>
+        ))}
 
       </div>
-
-      <Link href="/results">
-        <button className="fixed bottom-24 left-4 right-4 h-14 rounded-2xl bg-gradient-to-r from-purple-600 to-violet-500 text-white font-semibold">
-          Compare Prices
-        </button>
-      </Link>
 
     </main>
   );
