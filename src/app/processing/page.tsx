@@ -1,15 +1,26 @@
 "use client";
 
-import { CheckCircle, Circle } from "lucide-react";
-import { useEffect } from "react";
+export const dynamic = "force-dynamic";
+
+import {
+  CheckCircle,
+  Circle,
+} from "lucide-react";
+
+import {
+  Suspense,
+  useEffect,
+} from "react";
+
 import {
   useRouter,
   useSearchParams,
 } from "next/navigation";
 
-export default function ProcessingPage() {
+function ProcessingContent() {
 
   const router = useRouter();
+
   const searchParams = useSearchParams();
 
   // GET VALUES
@@ -19,20 +30,23 @@ export default function ProcessingPage() {
   const query =
     searchParams.get("query") || "Item";
 
+  const price =
+    searchParams.get("price") || "499";
+
   // AUTO REDIRECT
   useEffect(() => {
 
     const timer = setTimeout(() => {
 
       router.push(
-        `/success/${type}?query=${query}`
+        `/success/${type}?query=${query}&price=${price}`
       );
 
     }, 3500);
 
     return () => clearTimeout(timer);
 
-  }, [router, type, query]);
+  }, [router, type, query, price]);
 
   return (
     <main className="min-h-screen bg-white flex flex-col items-center justify-center px-6">
@@ -64,7 +78,6 @@ export default function ProcessingPage() {
       {/* Steps */}
       <div className="w-full max-w-md space-y-6">
 
-        {/* Step 1 */}
         <div className="flex items-center justify-between">
 
           <p className="text-lg text-gray-700">
@@ -78,7 +91,6 @@ export default function ProcessingPage() {
 
         </div>
 
-        {/* Step 2 */}
         <div className="flex items-center justify-between">
 
           <p className="text-lg text-gray-700">
@@ -92,18 +104,16 @@ export default function ProcessingPage() {
 
         </div>
 
-        {/* Step 3 */}
         <div className="flex items-center justify-between">
 
           <p className="text-lg text-gray-700">
-            Booking your Order
+            Processing ₹{price}
           </p>
 
           <div className="w-7 h-7 border-4 border-purple-500 border-t-transparent rounded-full animate-spin" />
 
         </div>
 
-        {/* Step 4 */}
         <div className="flex items-center justify-between">
 
           <p className="text-lg text-gray-400">
@@ -120,5 +130,18 @@ export default function ProcessingPage() {
       </div>
 
     </main>
+  );
+}
+
+export default function ProcessingPage() {
+
+  return (
+
+    <Suspense fallback={<div>Loading...</div>}>
+
+      <ProcessingContent />
+
+    </Suspense>
+
   );
 }
