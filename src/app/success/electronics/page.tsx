@@ -1,9 +1,18 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 
-export default function ElectronicsSuccessPage() {
+import {
+  Suspense,
+} from "react";
+
+import {
+  useSearchParams,
+} from "next/navigation";
+
+function ElectronicsSuccessContent() {
 
   const searchParams = useSearchParams();
 
@@ -42,5 +51,18 @@ export default function ElectronicsSuccessPage() {
       </div>
 
     </main>
+  );
+}
+
+export default function ElectronicsSuccessPage() {
+
+  return (
+
+    <Suspense fallback={<div>Loading...</div>}>
+
+      <ElectronicsSuccessContent />
+
+    </Suspense>
+
   );
 }
