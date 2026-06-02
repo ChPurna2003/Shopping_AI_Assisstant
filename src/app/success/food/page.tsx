@@ -3,14 +3,8 @@
 export const dynamic = "force-dynamic";
 
 import Link from "next/link";
-
-import {
-  Suspense,
-} from "react";
-
-import {
-  useSearchParams,
-} from "next/navigation";
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
 function FoodSuccessContent() {
 
@@ -57,12 +51,8 @@ function FoodSuccessContent() {
 export default function FoodSuccessPage() {
 
   return (
-
     <Suspense fallback={<div>Loading...</div>}>
-
       <FoodSuccessContent />
-
     </Suspense>
-
   );
 }
