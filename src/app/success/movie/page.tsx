@@ -1,8 +1,16 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+export const dynamic = "force-dynamic";
 
-export default function MovieSuccessPage() {
+import {
+  Suspense,
+} from "react";
+
+import {
+  useSearchParams,
+} from "next/navigation";
+
+function MovieSuccessContent() {
 
   const searchParams = useSearchParams();
 
@@ -33,5 +41,18 @@ export default function MovieSuccessPage() {
       </div>
 
     </main>
+  );
+}
+
+export default function MovieSuccessPage() {
+
+  return (
+
+    <Suspense fallback={<div>Loading...</div>}>
+
+      <MovieSuccessContent />
+
+    </Suspense>
+
   );
 }
