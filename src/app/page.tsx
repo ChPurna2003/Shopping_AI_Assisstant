@@ -1,289 +1,191 @@
 "use client";
 
-import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import {
+  BadgePercent,
+  Ticket,
+  BellRing,
+  Sparkles,
+} from "lucide-react";
 
-export default function HomePage() {
+export default function EntryPage() {
+
+  const router = useRouter();
+
+  // AUTO REDIRECT
+  useEffect(() => {
+
+    const timer = setTimeout(() => {
+      router.push("/home");
+    }, 10000);
+
+    return () => clearTimeout(timer);
+
+  }, [router]);
 
   return (
 
-    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-40">
+    <main className="min-h-screen bg-white overflow-hidden">
 
-      {/* Top Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between px-12 py-12">
 
-        <div>
+        {/* LEFT SIDE */}
+        <div className="max-w-2xl">
 
-          <p className="text-sm text-gray-500">
-            Welcome back 👋
-          </p>
-
-          <h1 className="text-4xl font-bold mt-1">
-            Purna
+          {/* LOGO */}
+          <h1 className="text-7xl font-black text-purple-600">
+            slice
           </h1>
 
-        </div>
+          {/* TAG */}
+          <div className="mt-8 inline-block bg-gradient-to-r from-purple-500 to-violet-600 text-white px-6 py-3 rounded-2xl text-sm font-bold shadow-lg">
 
-        <Link href="/profile">
-
-          <img
-            src="/profile.JPG"
-            alt="profile"
-            className="w-14 h-14 rounded-full object-cover"
-          />
-
-        </Link>
-
-      </div>
-
-      {/* AI Banner */}
-      <div className="bg-gradient-to-r from-purple-600 to-violet-500 rounded-3xl p-6 text-white mb-6 shadow-lg">
-
-        <p className="text-sm text-purple-100 mb-2">
-          AI Powered Savings
-        </p>
-
-        <h2 className="text-3xl font-bold leading-tight mb-3">
-          Find the best price across all apps instantly
-        </h2>
-
-        <p className="text-purple-100 mb-6">
-          Compare prices, apply coupons, and save more automatically.
-        </p>
-
-        <Link href="/search">
-
-          <button className="bg-white text-purple-700 px-6 py-3 rounded-2xl font-semibold shadow-md">
-
-            Try Now ⚡
-
-          </button>
-
-        </Link>
-
-      </div>
-
-      {/* Quick Actions */}
-      <div className="grid grid-cols-4 gap-3 mb-8">
-
-        <Link href="/movies?query=Movie Tickets">
-
-          <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
-
-            <p className="text-3xl mb-2">
-              🎬
-            </p>
-
-            <p className="text-xs font-medium">
-              Movies
-            </p>
+            NEW FEATURE
 
           </div>
 
-        </Link>
+          {/* TITLE */}
+          <h2 className="text-7xl font-black leading-tight mt-10">
 
-        <Link href="/food?query=Food Delivery">
+            Best Price AI ✨
 
-          <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
-
-            <p className="text-3xl mb-2">
-              🍔
-            </p>
-
-            <p className="text-xs font-medium">
-              Food
-            </p>
-
-          </div>
-
-        </Link>
-
-        <Link href="/groceries?query=Groceries">
-
-          <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
-
-            <p className="text-3xl mb-2">
-              🛒
-            </p>
-
-            <p className="text-xs font-medium">
-              Grocery
-            </p>
-
-          </div>
-
-        </Link>
-
-        <Link href="/electronics?query=Electronics">
-
-          <div className="bg-white rounded-2xl p-4 flex flex-col items-center shadow-sm">
-
-            <p className="text-3xl mb-2">
-              📱
-            </p>
-
-            <p className="text-xs font-medium">
-              Gadgets
-            </p>
-
-          </div>
-
-        </Link>
-
-      </div>
-
-      {/* Savings Card */}
-      <div className="bg-white rounded-3xl p-6 shadow-sm mb-6">
-
-        <p className="text-gray-500 text-sm mb-2">
-          Total Savings This Month
-        </p>
-
-        <h2 className="text-5xl font-bold mb-3">
-          ₹2,340
-        </h2>
-
-        <div className="bg-green-50 text-green-600 px-4 py-2 rounded-xl inline-block font-medium">
-
-          ↑ 18% higher than last month
-
-        </div>
-
-      </div>
-
-      {/* Recent Searches */}
-      <div className="mb-6">
-
-        <div className="flex justify-between items-center mb-4">
-
-          <h2 className="text-2xl font-bold">
-            Recent Searches
           </h2>
 
-          <Link href="/search">
+          {/* SUBTITLE */}
+          <p className="text-gray-600 text-3xl mt-6 leading-relaxed">
 
-            <p className="text-purple-600 font-medium">
-              View all
-            </p>
+            One search. Multiple platforms.
+            <br />
+            Best deal. Every time.
 
-          </Link>
+          </p>
 
-        </div>
+          {/* FEATURES */}
+          <div className="mt-16 space-y-10">
 
-        <div className="space-y-4">
+            {/* FEATURE 1 */}
+            <div className="flex items-center gap-6">
 
-          <Link href="/results?query=Movie Tickets">
+              <div className="w-20 h-20 rounded-3xl bg-purple-100 flex items-center justify-center">
 
-            <div className="bg-white rounded-2xl p-5 shadow-sm flex justify-between items-center">
+                <BadgePercent
+                  size={38}
+                  className="text-purple-600"
+                />
+
+              </div>
 
               <div>
 
-                <p className="font-semibold">
-                  Avengers Endgame
-                </p>
+                <h3 className="text-3xl font-bold">
+                  Compare prices
+                </h3>
 
-                <p className="text-sm text-gray-500 mt-1">
-                  Movie Tickets
+                <p className="text-gray-500 text-xl">
+                  Across platforms
                 </p>
 
               </div>
 
-              <p className="text-green-600 font-bold">
-                Saved ₹230
-              </p>
-
             </div>
 
-          </Link>
+            {/* FEATURE 2 */}
+            <div className="flex items-center gap-6">
 
-          <Link href="/results?query=Food Delivery">
+              <div className="w-20 h-20 rounded-3xl bg-purple-100 flex items-center justify-center">
 
-            <div className="bg-white rounded-2xl p-5 shadow-sm flex justify-between items-center">
+                <Ticket
+                  size={38}
+                  className="text-purple-600"
+                />
+
+              </div>
 
               <div>
 
-                <p className="font-semibold">
-                  Chicken Biryani
-                </p>
+                <h3 className="text-3xl font-bold">
+                  Coupons & offers
+                </h3>
 
-                <p className="text-sm text-gray-500 mt-1">
-                  Food Delivery
+                <p className="text-gray-500 text-xl">
+                  Automatically applied
                 </p>
 
               </div>
 
-              <p className="text-green-600 font-bold">
-                Saved ₹80
-              </p>
+            </div>
+
+            {/* FEATURE 3 */}
+            <div className="flex items-center gap-6">
+
+              <div className="w-20 h-20 rounded-3xl bg-purple-100 flex items-center justify-center">
+
+                <Sparkles
+                  size={38}
+                  className="text-purple-600"
+                />
+
+              </div>
+
+              <div>
+
+                <h3 className="text-3xl font-bold">
+                  Save time & money
+                </h3>
+
+                <p className="text-gray-500 text-xl">
+                  Always the best deal
+                </p>
+
+              </div>
 
             </div>
 
-          </Link>
+            {/* FEATURE 4 */}
+            <div className="flex items-center gap-6">
+
+              <div className="w-20 h-20 rounded-3xl bg-purple-100 flex items-center justify-center">
+
+                <BellRing
+                  size={38}
+                  className="text-purple-600"
+                />
+
+              </div>
+
+              <div>
+
+                <h3 className="text-3xl font-bold">
+                  Price drop alerts
+                </h3>
+
+                <p className="text-gray-500 text-xl">
+                  Get notified instantly
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
 
         </div>
 
-      </div>
+        {/* RIGHT SIDE WALLET */}
+        <div className="flex items-center justify-center">
 
-      {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t h-16 flex items-center justify-around z-50">
+          <img
+            src="/wallet.png"
+            alt="wallet"
+            className="w-[500px] mt-100 animate-pulse"
+          />
 
-        <Link href="/">
-
-          <div className="flex flex-col items-center text-purple-600">
-
-            <p>🏠</p>
-
-            <p className="text-xs">
-              Home
-            </p>
-
-          </div>
-
-        </Link>
-
-        <Link href="/search">
-
-          <div className="flex flex-col items-center text-gray-500">
-
-            <p>🔍</p>
-
-            <p className="text-xs">
-              Search
-            </p>
-
-          </div>
-
-        </Link>
-
-        <Link href="/savings">
-
-          <div className="flex flex-col items-center text-gray-500">
-
-            <p>💰</p>
-
-            <p className="text-xs">
-              Savings
-            </p>
-
-          </div>
-
-        </Link>
-
-        <Link href="/profile">
-
-          <div className="flex flex-col items-center text-gray-500">
-
-            <p>👤</p>
-
-            <p className="text-xs">
-              Profile
-            </p>
-
-          </div>
-
-        </Link>
+        </div>
 
       </div>
 
     </main>
+
   );
 }

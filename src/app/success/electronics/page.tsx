@@ -1,68 +1,127 @@
 "use client";
 
-export const dynamic = "force-dynamic";
+export default function ElectronicsPage() {
 
-import Link from "next/link";
+  const gadgets = [
 
-import {
-  Suspense,
-} from "react";
+    {
+      name: "iPhone 15",
+      brand: "Apple • A16 Bionic",
+      price: "59999",
+      image: "/iphone15.jpg",
+    },
 
-import {
-  useSearchParams,
-} from "next/navigation";
+    {
+      name: "MacBook Air",
+      brand: "Apple M2 • 256GB",
+      price: "94999",
+      image: "/macbook.jpg",
+    },
 
-function ElectronicsSuccessContent() {
+    {
+      name: "Samsung S24",
+      brand: "Galaxy AI • 256GB",
+      price: "68999",
+      image: "/s24.jpg",
+    },
 
-  const searchParams = useSearchParams();
+    {
+      name: "Sony Headphones",
+      brand: "WH-1000XM5",
+      price: "19999",
+      image: "/sony.jpg",
+    },
 
-  const query =
-    searchParams.get("query") || "Electronics";
+  ];
 
   return (
-    <main className="min-h-screen bg-[#f7f7fb] flex items-center justify-center p-6">
 
-      <div className="bg-white rounded-3xl p-8 shadow-lg text-center w-full max-w-md">
+    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-32">
 
-        <div className="text-6xl mb-4">
-          📱
-        </div>
+      {/* HEADER */}
+      <div className="mb-8">
 
-        <h1 className="text-3xl font-bold mb-3">
-          Purchase Successful
+        <h1 className="text-4xl font-black">
+          📱 Electronics
         </h1>
 
-        <p className="text-gray-500 mb-6">
-          {query} purchased successfully.
+        <p className="text-gray-500 mt-2 text-lg">
+          Compare prices across Amazon, Flipkart & more
         </p>
 
-        <div className="bg-green-100 text-green-700 rounded-2xl p-4 mb-6">
-          You saved ₹4,000 using Slice AI
-        </div>
+      </div>
 
-        <Link href="/">
+      {/* PRODUCTS */}
+      <div className="space-y-8">
 
-          <button className="w-full h-14 bg-blue-500 text-white rounded-2xl font-semibold">
-            Back to Home
-          </button>
+        {gadgets.map((item) => (
 
-        </Link>
+          <div
+            key={item.name}
+            className="bg-white rounded-[32px] overflow-hidden shadow-lg"
+          >
+
+            {/* IMAGE */}
+            <div className="bg-gray-100 flex justify-center items-center p-6">
+
+              <img
+                src={item.image}
+                alt={item.name}
+                className="h-64 object-contain"
+              />
+
+            </div>
+
+            {/* CONTENT */}
+            <div className="p-6">
+
+              <div className="flex justify-between items-start">
+
+                <div>
+
+                  <h2 className="text-3xl font-bold">
+                    {item.name}
+                  </h2>
+
+                  <p className="text-gray-500 mt-2 text-lg">
+                    {item.brand}
+                  </p>
+
+                </div>
+
+                <div className="text-right">
+
+                  <p className="text-3xl font-black">
+                    ₹{item.price}
+                  </p>
+
+                  <p className="text-green-600 text-sm mt-1">
+                    Best Price
+                  </p>
+
+                </div>
+
+              </div>
+
+              {/* BUTTON */}
+              <button
+                onClick={() =>
+                  window.location.href =
+                    `/results?query=${encodeURIComponent(item.name)}&type=electronics&price=${item.price}`
+                }
+                className="w-full h-14 mt-6 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xl font-bold shadow-lg"
+              >
+                Compare Prices
+              </button>
+
+            </div>
+
+          </div>
+
+        ))}
 
       </div>
 
     </main>
-  );
-}
-
-export default function ElectronicsSuccessPage() {
-
-  return (
-
-    <Suspense fallback={<div>Loading...</div>}>
-
-      <ElectronicsSuccessContent />
-
-    </Suspense>
-
   );
 }

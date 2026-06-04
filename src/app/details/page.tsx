@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
@@ -15,7 +17,7 @@ function DetailsContent() {
     searchParams.get("type") || "food";
 
   const price =
-    searchParams.get("price") || "₹210";
+    searchParams.get("price") || "210";
 
   return (
     <main className="min-h-screen bg-[#f7f7fb] p-4 pb-40">
@@ -73,7 +75,7 @@ function DetailsContent() {
             <>
               <div className="flex justify-between">
                 <p>Ticket Price</p>
-                <p>{price}</p>
+                <p>₹{price}</p>
               </div>
 
               <div className="flex justify-between">
@@ -93,7 +95,7 @@ function DetailsContent() {
             <>
               <div className="flex justify-between">
                 <p>Meal Price</p>
-                <p>{price}</p>
+                <p>₹{price}</p>
               </div>
 
               <div className="flex justify-between">
@@ -113,7 +115,7 @@ function DetailsContent() {
             <>
               <div className="flex justify-between">
                 <p>Item Total</p>
-                <p>{price}</p>
+                <p>₹{price}</p>
               </div>
 
               <div className="flex justify-between">
@@ -133,7 +135,7 @@ function DetailsContent() {
             <>
               <div className="flex justify-between">
                 <p>Original Price</p>
-                <p>{price}</p>
+                <p>₹{price}</p>
               </div>
 
               <div className="flex justify-between">
@@ -144,10 +146,6 @@ function DetailsContent() {
               <div className="flex justify-between">
                 <p>Bank Offer</p>
                 <p className="text-green-600">-₹2,000</p>
-
-                <button className="w-full h-14 border border-purple-500 text-purple-600 rounded-2xl font-semibold mt-4">
-  🔔 Set Price Alert
-</button>
               </div>
             </>
           )}
@@ -162,10 +160,22 @@ function DetailsContent() {
           </h2>
 
           <h2 className="text-4xl font-bold text-purple-600">
-            {price}
+            ₹{price}
           </h2>
 
         </div>
+
+        {/* ALERT BUTTON */}
+        {type === "electronics" && (
+
+          <button
+            onClick={() => window.location.href = "/alert-success"}
+            className="w-full h-14 border-2 border-purple-500 text-purple-600 rounded-2xl font-semibold mt-6"
+          >
+            🔔 Set Price Alert
+          </button>
+
+        )}
 
       </div>
 
@@ -173,12 +183,12 @@ function DetailsContent() {
       <div className="fixed bottom-20 left-4 right-4 z-50">
 
         <Link
-          href={`/processing?query=${query}&type=${type}&price=${price}`}
+          href={`/payment?query=${query}&type=${type}&price=${price}`}
         >
 
           <button className="w-full h-16 bg-gradient-to-r from-purple-500 to-violet-600 text-white rounded-2xl text-xl font-semibold shadow-lg">
 
-            Continue Payment {price}
+            Continue Payment ₹{price}
 
           </button>
 
