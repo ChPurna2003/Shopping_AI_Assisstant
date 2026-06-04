@@ -178,7 +178,7 @@ export default function EntryPage() {
           <img
             src="/wallet.png"
             alt="wallet"
-            className="w-[500px] mt-100 animate-pulse"
+            className="w-[500px] mt-40 animate-pulse"
           />
 
         </div>
