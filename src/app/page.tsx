@@ -18,7 +18,7 @@ export default function EntryPage() {
 
     const timer = setTimeout(() => {
       router.push("/home");
-    }, 10000);
+    }, 5000);
 
     return () => clearTimeout(timer);
 

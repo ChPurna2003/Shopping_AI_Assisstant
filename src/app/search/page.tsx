@@ -1,161 +1,210 @@
 "use client";
 
-import { askGemini } from "../../services/gemini";
-import Link from "next/link";
 import { useState } from "react";
-import { Search, Mic } from "lucide-react";
+import {
+  Sparkles,
+  Search,
+} from "lucide-react";
 
 export default function SearchPage() {
-  const [query, setQuery] = useState("");
-  const [aiResponse, setAiResponse] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  const handleSearch = async () => {
-    if (!query) return;
+  const [message, setMessage] = useState("");
+  const [reply, setReply] = useState("");
 
-    setLoading(true);
+  // FAKE AI FUNCTION
+  const askAI = () => {
 
-    const result = await askGemini(
-      `User wants best shopping advice for: ${query}.
-      Give short smart recommendation with best platform and savings.`
-    );
+    const lower = message.toLowerCase();
 
-    setAiResponse(result);
+    // IPHONE
+    if (lower.includes("iphone")) {
 
-    setLoading(false);
+      setReply(
+        "📱 iPhone 15 currently has the best price on Amazon with bank cashback."
+      );
+
+    }
+
+    // BIRYANI
+    else if (lower.includes("biryani")) {
+
+      setReply(
+        "🍛 Mehfil Biryani gives the best deal under ₹250 with fastest delivery."
+      );
+
+    }
+
+    // MOVIES
+    else if (
+      lower.includes("movie") ||
+      lower.includes("interstellar") ||
+      lower.includes("pushpa")
+    ) {
+
+      setReply(
+        "🎬 Interstellar is trending now and BookMyShow gives the best cashback."
+      );
+
+    }
+
+    // LAPTOP
+    else if (
+      lower.includes("laptop") ||
+      lower.includes("macbook")
+    ) {
+
+      setReply(
+        "💻 MacBook Air is best for students with excellent battery life and performance."
+      );
+
+    }
+
+    // GROCERY
+    else if (
+      lower.includes("milk") ||
+      lower.includes("rice") ||
+      lower.includes("vegetables")
+    ) {
+
+      setReply(
+        "🛒 Blinkit currently offers the fastest grocery delivery with best discounts."
+      );
+
+    }
+
+    // DEFAULT
+    else {
+
+      setReply(
+        "✨ Slice AI recommends comparing prices before purchase for maximum savings."
+      );
+
+    }
+
   };
 
   return (
-    <main className="min-h-screen bg-[#f7f7fb] p-4 pb-40">
 
-      {/* Header */}
-      <p className="text-sm mb-2 text-gray-500">
-        Best Price AI
-      </p>
+    <main className="min-h-screen bg-[#f7f7fb] p-5 pb-32">
 
-      <h1 className="text-4xl font-bold leading-tight mb-8">
-        What are you
-        <span className="text-purple-600"> looking for?</span>
-      </h1>
+      {/* HEADER */}
+      <div className="mb-8">
 
-      {/* Search Box */}
-      <div className="bg-white rounded-2xl p-4 flex items-center gap-3 shadow-sm border mb-6">
+        <h1 className="text-4xl font-black">
+          ✨ Ask Slice AI
+        </h1>
 
-        <Search className="text-gray-400" />
-
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search for movies, food, groceries..."
-          className="w-full outline-none bg-white text-black"
-        />
-
-        <Mic className="text-purple-600" />
+        <p className="text-gray-500 mt-2 text-lg">
+          Smart shopping assistant powered by AI
+        </p>
 
       </div>
 
-      {/* AI Recommendation */}
-      {aiResponse && (
-        <div className="bg-white p-4 rounded-2xl shadow-md mb-6">
+      {/* SEARCH BOX */}
+      <div className="bg-white rounded-3xl p-4 shadow-sm">
 
-          <h2 className="font-bold text-lg mb-2">
-            AI Recommendation
-          </h2>
+        <div className="flex items-center gap-3">
 
-          <p className="text-gray-700">
-            {aiResponse}
+          <Search
+            size={24}
+            className="text-gray-400"
+          />
+
+          <input
+            type="text"
+            value={message}
+            onChange={(e) =>
+              setMessage(e.target.value)
+            }
+            placeholder="Ask AI anything..."
+            className="flex-1 outline-none text-lg"
+          />
+
+        </div>
+
+      </div>
+
+      {/* QUICK CHIPS */}
+      <div className="flex gap-3 overflow-x-auto mt-5">
+
+        <button
+          onClick={() =>
+            setMessage("Best iPhone under 40000")
+          }
+          className="bg-white px-4 py-2 rounded-full border whitespace-nowrap"
+        >
+          iPhone Deals
+        </button>
+
+        <button
+          onClick={() =>
+            setMessage("Best biryani under 250")
+          }
+          className="bg-white px-4 py-2 rounded-full border whitespace-nowrap"
+        >
+          Food Deals
+        </button>
+
+        <button
+          onClick={() =>
+            setMessage("Best movie this week")
+          }
+          className="bg-white px-4 py-2 rounded-full border whitespace-nowrap"
+        >
+          Movie Suggestions
+        </button>
+
+      </div>
+
+      {/* ASK BUTTON */}
+      <button
+        onClick={askAI}
+        className="w-full h-14 bg-gradient-to-r from-purple-500 to-violet-600 text-white rounded-2xl mt-6 text-lg font-bold shadow-lg"
+      >
+
+        ✨ Ask AI
+
+      </button>
+
+      {/* AI RESPONSE */}
+      {reply && (
+
+        <div className="bg-white rounded-3xl p-6 mt-6 shadow-sm">
+
+          <div className="flex items-center gap-3 mb-4">
+
+            <div className="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center">
+
+              <Sparkles
+                size={24}
+                className="text-purple-600"
+              />
+
+            </div>
+
+            <div>
+
+              <h2 className="text-2xl font-bold">
+                Slice AI
+              </h2>
+
+              <p className="text-gray-500 text-sm">
+                Smart Recommendation
+              </p>
+
+            </div>
+
+          </div>
+
+          <p className="text-gray-700 text-lg leading-relaxed">
+            {reply}
           </p>
 
         </div>
+
       )}
 
-      {/* Popular Searches */}
-      <div className="mb-8">
-
-        <h3 className="font-semibold text-lg mb-4">
-          Popular Searches
-        </h3>
-
-        <div className="flex flex-wrap gap-3">
-
-          <Link href="/movies">
-            <button className="bg-white border px-4 py-2 rounded-full shadow-sm">
-              Movie Tickets
-            </button>
-          </Link>
-
-          <Link href="/food">
-            <button className="bg-white border px-4 py-2 rounded-full shadow-sm">
-              Food Delivery
-            </button>
-          </Link>
-
-          <Link href="/groceries">
-            <button className="bg-white border px-4 py-2 rounded-full shadow-sm">
-              Groceries
-            </button>
-          </Link>
-
-          <Link href="/electronics">
-            <button className="bg-white border px-4 py-2 rounded-full shadow-sm">
-              Electronics
-            </button>
-          </Link>
-
-        </div>
-
-      </div>
-
-      {/* Search History */}
-      <div className="mb-10">
-
-        <div className="flex justify-between items-center mb-4">
-
-          <h3 className="font-semibold text-lg">
-            Search History
-          </h3>
-
-          <button className="text-sm text-gray-500">
-            Clear
-          </button>
-
-        </div>
-
-        <div className="space-y-4 text-gray-700">
-
-          <p>🕘 Avengers Endgame Tickets</p>
-          <p>🕘 Bangalore to Mysore Bus</p>
-          <p>🕘 Chicken Biryani</p>
-          <p>🕘 iPhone 15</p>
-
-        </div>
-
-      </div>
-
-      {/* Bottom Buttons */}
-      <div className="fixed bottom-20 left-4 right-4 flex gap-3 z-50">
-
-        {/* Ask AI */}
-        <button
-          onClick={handleSearch}
-          className="flex-1 h-14 bg-gradient-to-r from-purple-600 to-violet-500 text-white rounded-2xl font-semibold shadow-lg"
-        >
-          {loading ? "Thinking..." : "Ask AI"}
-        </button>
-
-        {/* Search Deals */}
-        <Link
-          href={`/results?query=${encodeURIComponent(query || "Movie Tickets")}`}
-          className="flex-1"
-        >
-          <button className="w-full h-14 bg-black text-white rounded-2xl font-semibold shadow-lg">
-            Search Deals
-          </button>
-        </Link>
-
-      </div>
-
     </main>
+
   );
 }
