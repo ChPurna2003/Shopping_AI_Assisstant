@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Search, User, BadgeIndianRupee } from "lucide-react";
+import { Home, Search, User, BadgeIndianRupee, Bell } from "lucide-react";
 
 export default function BottomNav() {
   const pathname = usePathname();
@@ -46,6 +46,14 @@ export default function BottomNav() {
         <User size={22} />
         <span>Profile</span>
       </Link>
+
+      <Link
+  href="/alerts"
+  className={`flex flex-col items-center text-xs ${active("/alerts")}`}
+>
+  <Bell size={22} />
+  <span>Alerts</span>
+</Link>
 
     </div>
   );

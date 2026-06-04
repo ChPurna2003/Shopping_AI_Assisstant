@@ -19,7 +19,7 @@ export default function ProfilePage() {
 
         {/* Image */}
         <img
-          src="/profile.jpg"
+          src="/profile.JPG"
           alt="profile"
           className="w-40 h-40 rounded-full object-cover mb-6"
         />

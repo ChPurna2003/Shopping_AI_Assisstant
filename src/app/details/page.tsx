@@ -144,6 +144,10 @@ function DetailsContent() {
               <div className="flex justify-between">
                 <p>Bank Offer</p>
                 <p className="text-green-600">-₹2,000</p>
+
+                <button className="w-full h-14 border border-purple-500 text-purple-600 rounded-2xl font-semibold mt-4">
+  🔔 Set Price Alert
+</button>
               </div>
             </>
           )}

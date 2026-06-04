@@ -26,7 +26,7 @@ export default function HomePage() {
         <Link href="/profile">
 
           <img
-            src="/profile.jpg"
+            src="/profile.JPG"
             alt="profile"
             className="w-14 h-14 rounded-full object-cover"
           />
